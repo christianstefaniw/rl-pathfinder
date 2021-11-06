@@ -1,7 +1,7 @@
-public class States {
+public class QValues {
     private int[][][] qValues;
 
-    public States() {
+    public QValues() {
         this.qValues = new int[Environment.numRows][Environment.numCols][Actions.allActions.length];
     }
 }

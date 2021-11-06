@@ -5,26 +5,26 @@ public final class Environment {
 
     private Actions actions;
     private Rewards rewards;
-    private States states;
+    private Position state;
 
-    public Environment(Actions actions, Rewards rewards, States states) {
+    public Environment(Actions actions, Rewards rewards, Position state) {
         this.actions = actions;
         this.rewards = rewards;
-        this.states = states;
+        this.state = state;
     }
 
     public Environment() {
         this.actions = new Actions();
         this.rewards = new Rewards(PathDifficulty.EASY);
-        this.states = new States();
+        this.state = getStartingPosition();
     }
 
     public void setRewards(Rewards rewards) {
         this.rewards = rewards;
     }
 
-    public void setStates(States states) {
-        this.states = states;
+    public void setState(Position states) {
+        this.state = states;
     }
 
     public void setActions(Actions actions) {
