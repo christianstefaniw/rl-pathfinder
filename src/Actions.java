@@ -1,3 +1,3 @@
 public final class Actions {
-    public static String[] allActions = { "up", "left", "right", "down" };
+    public static ActionType[] allActions = { ActionType.UP, ActionType.LEFT, ActionType.RIGHT, ActionType.DOWN };
 }

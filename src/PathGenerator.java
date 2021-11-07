@@ -1,5 +1,5 @@
 public class PathGenerator {
-    private final int winReward = 100, validStepReward = -300;
+    private final int winReward = 100, validStepReward = -1;
 
     public void easy(int[][] blankRewards) {
         int[][] rewards = blankRewards;
@@ -17,6 +17,8 @@ public class PathGenerator {
 
         for (int i = 1; i < 5; i++)
             rewards[8][i] = validStepReward;
+
+        Helpers.print2DIntArray(rewards);
     }
 
     public void medium(int[][] blankRewards) {

@@ -22,7 +22,11 @@ public class Rewards {
         }
     }
 
-    public boolean isInTerminalState(int currRow, int currCol) {
-        return rewards[currRow][currCol] == -100 ? true : false;
+    public boolean isInTerminalState(Position pos) {
+        return rewards[pos.getRow()][pos.getCol()] == -100 || rewards[pos.getRow()][pos.getCol()] == 100 ? true : false;
+    }
+
+    public int getRewardAtCoords(int row, int col) {
+        return rewards[row][col];
     }
 }

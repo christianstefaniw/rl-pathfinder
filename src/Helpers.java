@@ -1,4 +1,8 @@
+import java.util.Random;
+
 public class Helpers {
+    public static Random rand = new Random();
+
     public static void fill2DIntArray(int[][] array, int value) {
         for (int i = 0; i < array.length; i++)
             for (int k = 0; k < array[i].length; k++)
@@ -16,4 +20,15 @@ public class Helpers {
 
         System.out.println();
     }
+
+    public static int getIndexOfMaxValue(double[] array) {
+        int maxAt = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            maxAt = array[i] > array[maxAt] ? i : maxAt;
+        }
+
+        return maxAt;
+    }
+
 }

@@ -6,6 +6,9 @@ public class Position {
         this.col = col;
     }
 
+    public Position() {
+    }
+
     public void setCol(int col) {
         this.col = col;
     }
@@ -20,5 +23,14 @@ public class Position {
 
     public int getRow() {
         return row;
+    }
+
+    public int[] asList() {
+        int[] posAsList = { row, col };
+        return posAsList;
+    }
+
+    public String toString() {
+        return String.format("row: " + row + " col: " + col);
     }
 }

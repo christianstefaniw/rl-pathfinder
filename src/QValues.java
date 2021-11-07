@@ -1,7 +1,12 @@
 public class QValues {
-    private int[][][] qValues;
+    public double[][][] qTable;
 
     public QValues() {
-        this.qValues = new int[Environment.numRows][Environment.numCols][Actions.allActions.length];
+        this.qTable = new double[Environment.numRows][Environment.numCols][Actions.allActions.length];
+    }
+
+    public int getIndexOfMaxQAtPos(Position pos) {
+        double[] qValues = qTable[pos.getRow()][pos.getCol()];
+        return Helpers.getIndexOfMaxValue(qValues);
     }
 }
