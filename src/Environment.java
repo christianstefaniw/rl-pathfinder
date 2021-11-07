@@ -59,21 +59,18 @@ public final class Environment {
         return newState;
     }
 
-    public ArrayList<int[]> getShortestPath(Position startPos) {
+    public ArrayList<Position> getShortestPath(Position startPos) {
         state = startPos;
         if (isInTerminalState())
-            return new ArrayList<int[]>();
+            return new ArrayList<Position>();
 
-        ArrayList<int[]> shortestPath = new ArrayList<int[]>();
-        shortestPath.add(state.asList());
-        System.out.println(state);
+        ArrayList<Position> shortestPath = new ArrayList<Position>();
+        shortestPath.add(startPos);
 
         while (!isInTerminalState()) {
             int actionIndex = getNextAction(0.);
-            Position newPos = updatedState(actionIndex);
-            System.out.println(newPos);
-            shortestPath.add(newPos.asList());
-            state = newPos;
+            state = updatedState(actionIndex);
+            shortestPath.add(state);
         }
 
         return shortestPath;

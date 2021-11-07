@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Helpers {
@@ -21,14 +22,10 @@ public class Helpers {
         System.out.println();
     }
 
-    public static int getIndexOfMaxValue(double[] array) {
-        int maxAt = 0;
-
-        for (int i = 0; i < array.length; i++) {
-            maxAt = array[i] > array[maxAt] ? i : maxAt;
+    public static void printShortestPath(ArrayList<Position> shortestPath) {
+        for (int i = 0; i < shortestPath.size(); i++) {
+            System.out.printf("\nstep %s\n", i);
+            System.out.println(shortestPath.get(i));
         }
-
-        return maxAt;
     }
-
 }

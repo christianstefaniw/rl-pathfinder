@@ -7,6 +7,16 @@ public class QValues {
 
     public int getIndexOfMaxQAtPos(Position pos) {
         double[] qValues = qTable[pos.getRow()][pos.getCol()];
-        return Helpers.getIndexOfMaxValue(qValues);
+        return getIndexOfMaxQ(qValues);
+    }
+
+    private int getIndexOfMaxQ(double[] qValues) {
+        int maxAt = 0;
+
+        for (int i = 0; i < qValues.length; i++) {
+            maxAt = qValues[i] > qValues[maxAt] ? i : maxAt;
+        }
+
+        return maxAt;
     }
 }

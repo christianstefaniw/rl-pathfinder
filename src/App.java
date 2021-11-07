@@ -15,14 +15,7 @@ public class App {
 
         System.out.println("done!");
 
-        final ArrayList<int[]> shortestPath = env.getShortestPath(new Position(8, 2));
-
-        for (int i = 0; i < shortestPath.size(); i++) {
-            for (int k = 0; k < shortestPath.get(i).length; k++) {
-                System.out.print(shortestPath.get(i)[k]);
-                System.out.print(", ");
-            }
-            System.out.println();
-        }
+        final ArrayList<Position> shortestPath = env.getShortestPath(new Position(8, 3));
+        Helpers.printShortestPath(shortestPath);
     }
 }
