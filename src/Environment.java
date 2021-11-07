@@ -31,8 +31,9 @@ public final class Environment {
         return this.rewards.isInTerminalState(state);
     }
 
+    // epsilon greedy algorithm
     public int getNextAction(double epsilon) {
-        if (Math.random() < epsilon)
+        if (Math.random() > epsilon)
             return qValues.getIndexOfMaxQAtPos(state);
 
         return Helpers.rand.nextInt(4);
@@ -68,7 +69,7 @@ public final class Environment {
         System.out.println(state);
 
         while (!isInTerminalState()) {
-            int actionIndex = getNextAction(1.);
+            int actionIndex = getNextAction(0.);
             Position newPos = updatedState(actionIndex);
             System.out.println(newPos);
             shortestPath.add(newPos.asList());
