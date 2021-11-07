@@ -16,10 +16,6 @@ public class Environment {
 
     }
 
-    public void setState(Position state) {
-        this.state = state;
-    }
-
     public int getCurrRow() {
         return this.state.getRow();
     }
@@ -28,7 +24,7 @@ public class Environment {
         return this.state.getCol();
     }
 
-    public Position getStartingPosition() {
+    public void putInStartingPosition() {
         Position pos = new Position(Helpers.rand.nextInt(Environment.numRows),
                 Helpers.rand.nextInt(Environment.numCols));
 
@@ -37,7 +33,8 @@ public class Environment {
             pos.setCol(Helpers.rand.nextInt(Environment.numCols));
         }
 
-        return pos;
+        state = pos;
+
     }
 
     public boolean isInTerminalState() {

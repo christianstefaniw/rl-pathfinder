@@ -7,9 +7,6 @@ public class App {
         Rewards rewards = new Rewards(PathDifficulty.EASY);
         env.rewards = rewards;
 
-        Position startPosition = env.getStartingPosition();
-        env.setState(startPosition);
-
         Agent aiAgent = new Agent(env, 10000);
         aiAgent.train();
 

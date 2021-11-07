@@ -20,7 +20,7 @@ public class Agent {
 
     public void train() {
         for (int epoch = 0; epoch < epochs; epoch++) {
-            env.setState(env.getStartingPosition());
+            env.putInStartingPosition();
 
             while (!env.isInTerminalState()) {
                 int oldRow = env.getCurrRow(), oldCol = env.getCurrCol();
