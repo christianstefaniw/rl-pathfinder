@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
-public final class Environment {
+public class Environment {
     public static int numRows = 10, numCols = 10;
     public Rewards rewards;
-    public Position state;
     public QValues qValues = new QValues();
+
+    private Position state;
 
     public Environment(Rewards rewards, Position state) {
         this.rewards = rewards;
@@ -13,6 +14,18 @@ public final class Environment {
 
     public Environment() {
 
+    }
+
+    public void setState(Position state) {
+        this.state = state;
+    }
+
+    public int getCurrRow() {
+        return this.state.getRow();
+    }
+
+    public int getCurrCol() {
+        return this.state.getCol();
     }
 
     public Position getStartingPosition() {
@@ -39,24 +52,21 @@ public final class Environment {
         return Helpers.rand.nextInt(4);
     }
 
-    public Position updatedState(int actionIndex) {
-        Position newState = new Position(state.getRow(), state.getCol());
-
+    public void updateState(int actionIndex) {
         switch (Actions.allActions[actionIndex]) {
         case UP:
-            newState.setRow(state.getRow() - 1);
+            state.setRow(state.getRow() - 1);
             break;
         case DOWN:
-            newState.setRow(state.getRow() + 1);
+            state.setRow(state.getRow() + 1);
             break;
         case RIGHT:
-            newState.setCol(state.getCol() + 1);
+            state.setCol(state.getCol() + 1);
             break;
         case LEFT:
-            newState.setCol(state.getCol() - 1);
+            state.setCol(state.getCol() - 1);
             break;
         }
-        return newState;
     }
 
     public ArrayList<Position> getShortestPath(Position startPos) {
@@ -69,8 +79,8 @@ public final class Environment {
 
         while (!isInTerminalState()) {
             int actionIndex = getNextAction(0.);
-            state = updatedState(actionIndex);
-            shortestPath.add(state);
+            updateState(actionIndex);
+            shortestPath.add(state.copy());
         }
 
         return shortestPath;

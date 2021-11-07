@@ -1,29 +1,27 @@
 public class PathGenerator {
-    private final int winReward = 100, validStepReward = -1;
-
-    public void easy(int[][] blankRewards) {
+    public static void easy(int[][] blankRewards) {
         int[][] rewards = blankRewards;
 
-        rewards[0][1] = winReward;
+        rewards[0][1] = Rewards.WIN_REWARD;
 
         for (int i = 1; i < 9; i++)
-            rewards[i][1] = validStepReward;
+            rewards[i][1] = Rewards.VALID_STEP_REWARD;
 
         for (int i = 1; i < 5; i++)
-            rewards[2][i] = validStepReward;
+            rewards[2][i] = Rewards.VALID_STEP_REWARD;
 
         for (int i = 3; i < 9; i++)
-            rewards[i][4] = validStepReward;
+            rewards[i][4] = Rewards.VALID_STEP_REWARD;
 
         for (int i = 1; i < 5; i++)
-            rewards[8][i] = validStepReward;
+            rewards[8][i] = Rewards.VALID_STEP_REWARD;
 
         Helpers.print2DIntArray(rewards);
     }
 
-    public void medium(int[][] blankRewards) {
+    public static void medium(int[][] blankRewards) {
     }
 
-    public void hard(int[][] blankRewards) {
+    public static void hard(int[][] blankRewards) {
     }
 }

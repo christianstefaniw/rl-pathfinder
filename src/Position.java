@@ -30,6 +30,10 @@ public class Position {
         return posAsList;
     }
 
+    public Position copy() {
+        return new Position(row, col);
+    }
+
     public String toString() {
         return String.format("row: " + row + " col: " + col);
     }

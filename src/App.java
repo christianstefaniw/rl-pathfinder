@@ -8,7 +8,7 @@ public class App {
         env.rewards = rewards;
 
         Position startPosition = env.getStartingPosition();
-        env.state = startPosition;
+        env.setState(startPosition);
 
         Agent aiAgent = new Agent(env, 10000);
         aiAgent.train();
@@ -17,5 +17,7 @@ public class App {
 
         final ArrayList<Position> shortestPath = env.getShortestPath(new Position(8, 3));
         Helpers.printShortestPath(shortestPath);
+
+        // Graphics graphics = new Graphics(env);
     }
 }

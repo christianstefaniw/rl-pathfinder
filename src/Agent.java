@@ -20,20 +20,20 @@ public class Agent {
 
     public void train() {
         for (int epoch = 0; epoch < epochs; epoch++) {
-            env.state = env.getStartingPosition();
+            env.setState(env.getStartingPosition());
 
             while (!env.isInTerminalState()) {
-                int actionIndex = env.getNextAction(epsilon);
-                Position newState = env.updatedState(actionIndex);
+                int oldRow = env.getCurrRow(), oldCol = env.getCurrCol();
 
-                int reward = env.rewards.getRewardAtCoords(newState.getRow(), newState.getCol());
-                double oldQValue = env.qValues.qTable[env.state.getRow()][env.state.getCol()][actionIndex];
+                int actionIndex = env.getNextAction(epsilon);
+                env.updateState(actionIndex);
+
+                int reward = env.rewards.getRewardAtCoords(env.getCurrRow(), env.getCurrCol());
+                double oldQValue = env.qValues.qTable[oldRow][oldCol][actionIndex];
                 double temporalDifference = calculateTemporalDifference(reward, oldQValue);
 
                 double newQValue = calculateQValue(oldQValue, temporalDifference);
-                env.qValues.qTable[env.state.getRow()][env.state.getCol()][actionIndex] = newQValue;
-
-                env.state = newState;
+                env.qValues.qTable[oldRow][oldCol][actionIndex] = newQValue;
             }
         }
     }
@@ -60,7 +60,7 @@ public class Agent {
     private double calculateTemporalDifference(int reward, double oldQValue) {
         return reward
                 + (discountFactor
-                        * Arrays.stream(env.qValues.qTable[env.state.getRow()][env.state.getCol()]).max().getAsDouble())
+                        * Arrays.stream(env.qValues.qTable[env.getCurrRow()][env.getCurrCol()]).max().getAsDouble())
                 - oldQValue;
     }
 }

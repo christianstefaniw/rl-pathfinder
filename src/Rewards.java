@@ -1,24 +1,25 @@
+import java.util.Arrays;
+
 public class Rewards {
     public PathDifficulty difficulty;
+    public static final int LOSE_REWARD = -100, WIN_REWARD = 100, VALID_STEP_REWARD = -1;
 
     private int[][] rewards = new int[Environment.numRows][Environment.numCols];
-    private PathGenerator pathGenerator = new PathGenerator();
-    private final int loseReward = -100;
 
     public Rewards(PathDifficulty difficulty) {
         this.difficulty = difficulty;
-        Helpers.fill2DIntArray(rewards, loseReward);
+        Helpers.fill2DIntArray(rewards, LOSE_REWARD);
         genPath();
     }
 
     private void genPath() {
         switch (difficulty) {
         case EASY:
-            this.pathGenerator.easy(rewards);
+            PathGenerator.easy(rewards);
         case MEDIUM:
-            this.pathGenerator.medium(rewards);
+            PathGenerator.medium(rewards);
         case HARD:
-            this.pathGenerator.hard(rewards);
+            PathGenerator.hard(rewards);
         }
     }
 
@@ -28,5 +29,9 @@ public class Rewards {
 
     public int getRewardAtCoords(int row, int col) {
         return rewards[row][col];
+    }
+
+    public int[][] deepCopy() {
+        return Arrays.stream(rewards).map(int[]::clone).toArray(int[][]::new);
     }
 }
