@@ -27,16 +27,12 @@ public class Environment {
         return rewards;
     }
 
+    public QValues getQValues() {
+        return qValues;
+    }
+
     public double getMaxQAtCurrState() {
         return qValues.getMaxQAtPos(state);
-    }
-
-    public double getQValue(Position state, int actionIndex) {
-        return qValues.getQValue(state, actionIndex);
-    }
-
-    public void updateQValue(Position state, int actionIndex, double qValue) {
-        qValues.setQValue(state, actionIndex, qValue);
     }
 
     public void putInRandStartingPosition() {

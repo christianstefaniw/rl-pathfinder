@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Agent {
     private Environment env;
     private int epochs;
@@ -28,11 +26,11 @@ public class Agent {
                 env.updateState(actionIndex);
 
                 int reward = env.getRewards().getRewardAtCoords(env.getCurrRow(), env.getCurrCol());
-                double oldQValue = env.getQValue(oldState, actionIndex);
+                double oldQValue = env.getQValues().getQValue(oldState, actionIndex);
                 double temporalDifference = calculateTemporalDifference(reward, oldQValue);
 
                 double newQValue = calculateQValue(oldQValue, temporalDifference);
-                env.updateQValue(oldState, actionIndex, newQValue);
+                env.getQValues().setQValue(oldState, actionIndex, newQValue);
             }
         }
     }
