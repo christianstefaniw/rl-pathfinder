@@ -28,4 +28,17 @@ public class Helpers {
             System.out.println(shortestPath.get(i));
         }
     }
+
+    public static void printQValues(double[][][] qTable) {
+        for (int i = 0; i < qTable.length; i++) {
+            for (int k = 0; k < qTable[i].length; k++) {
+                System.out.printf("Q Values for row: %s, col %s\n", i, k);
+                for (int h = 0; h < qTable[i][k].length; h++)
+                    System.out.printf("%s: %s\n", h, qTable[i][k][h]);
+
+                System.out.print("\n\n");
+            }
+        }
+
+    }
 }

@@ -24,7 +24,7 @@ public class Environment {
         return this.state.getCol();
     }
 
-    public void putInStartingPosition() {
+    public void putInRandStartingPosition() {
         Position pos = new Position(Helpers.rand.nextInt(Environment.numRows),
                 Helpers.rand.nextInt(Environment.numCols));
 
@@ -34,7 +34,6 @@ public class Environment {
         }
 
         state = pos;
-
     }
 
     public boolean isInTerminalState() {
@@ -50,24 +49,21 @@ public class Environment {
     }
 
     public void updateState(int actionIndex) {
-        switch (Actions.allActions[actionIndex]) {
-        case UP:
+        ActionType action = Actions.allActions[actionIndex];
+
+        if (action == ActionType.UP && state.getRow() > 0)
             state.setRow(state.getRow() - 1);
-            break;
-        case DOWN:
-            state.setRow(state.getRow() + 1);
-            break;
-        case RIGHT:
+        else if (action == ActionType.RIGHT && state.getCol() < numCols - 1)
             state.setCol(state.getCol() + 1);
-            break;
-        case LEFT:
+        else if (action == ActionType.DOWN && state.getRow() < numRows - 1)
+            state.setRow(state.getRow() + 1);
+        else if (action == ActionType.LEFT && state.getCol() > 0)
             state.setCol(state.getCol() - 1);
-            break;
-        }
     }
 
     public ArrayList<Position> getShortestPath(Position startPos) {
         state = startPos;
+
         if (isInTerminalState())
             return new ArrayList<Position>();
 

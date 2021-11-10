@@ -11,12 +11,13 @@ import java.awt.*;
 public class Graphics {
     private JFrame mainFrame;
     private Environment env;
-    private MazeBlock[][] mazeBlocks;
+    private MazeBlock[][] mazeBlocks = new MazeBlock[Environment.numRows][Environment.numCols];
 
     public Graphics(Environment env) {
         this.env = env;
         prepareGUI();
-        drawMaze();
+        // drawMaze();
+        mainFrame.add(new StepMazeBlock());
         mainFrame.setVisible(true);
     }
 
