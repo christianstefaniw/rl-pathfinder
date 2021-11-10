@@ -23,16 +23,16 @@ public class Agent {
             env.putInRandStartingPosition();
 
             while (!env.isInTerminalState()) {
-                int oldRow = env.getCurrRow(), oldCol = env.getCurrCol();
+                Position oldState = env.getState();
                 int actionIndex = env.getNextAction(epsilon);
                 env.updateState(actionIndex);
 
-                int reward = env.rewards.getRewardAtCoords(env.getCurrRow(), env.getCurrCol());
-                double oldQValue = env.qValues.qTable[oldRow][oldCol][actionIndex];
+                int reward = env.getRewards().getRewardAtCoords(env.getCurrRow(), env.getCurrCol());
+                double oldQValue = env.getQValue(oldState, actionIndex);
                 double temporalDifference = calculateTemporalDifference(reward, oldQValue);
 
                 double newQValue = calculateQValue(oldQValue, temporalDifference);
-                env.qValues.qTable[oldRow][oldCol][actionIndex] = newQValue;
+                env.updateQValue(oldState, actionIndex, newQValue);
             }
         }
     }
@@ -57,9 +57,6 @@ public class Agent {
      * @return
      */
     private double calculateTemporalDifference(int reward, double oldQValue) {
-        return reward
-                + (discountFactor
-                        * Arrays.stream(env.qValues.qTable[env.getCurrRow()][env.getCurrCol()]).max().getAsDouble())
-                - oldQValue;
+        return reward + (discountFactor * (env.getMaxQAtCurrState())) - oldQValue;
     }
 }

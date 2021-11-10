@@ -28,7 +28,7 @@ public class Graphics {
     }
 
     private void drawMaze() {
-        switch (env.rewards.difficulty) {
+        switch (env.getRewards().getPathDifficulty()) {
         case EASY:
             drawEasyMaze();
             break;
@@ -40,7 +40,7 @@ public class Graphics {
     }
 
     private void drawEasyMaze() {
-        int[][] maze = env.rewards.deepCopy();
+        int[][] maze = env.getRewards().deepCopy();
 
         for (int i = 0; i < maze.length; i++) {
             for (int k = 0; k < maze[i].length; k++) {

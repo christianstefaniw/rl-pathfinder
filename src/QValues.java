@@ -1,5 +1,7 @@
+import java.util.Arrays;
+
 public class QValues {
-    public double[][][] qTable;
+    private double[][][] qTable;
 
     public QValues() {
         this.qTable = new double[Environment.numRows][Environment.numCols][Actions.allActions.length];
@@ -18,5 +20,17 @@ public class QValues {
         }
 
         return maxAt;
+    }
+
+    public double getMaxQAtPos(Position state) {
+        return Arrays.stream(qTable[state.getRow()][state.getCol()]).max().getAsDouble();
+    }
+
+    public double getQValue(Position state, int actionIndex) {
+        return qTable[state.getRow()][state.getCol()][actionIndex];
+    }
+
+    public void setQValue(Position state, int actionIndex, double qValue) {
+        qTable[state.getRow()][state.getCol()][actionIndex] = qValue;
     }
 }

@@ -2,18 +2,13 @@ import java.util.ArrayList;
 
 public class Environment {
     public static int numRows = 10, numCols = 10;
-    public Rewards rewards;
-    public QValues qValues = new QValues();
 
     private Position state;
+    private Rewards rewards;
+    private QValues qValues = new QValues();
 
-    public Environment(Rewards rewards, Position state) {
+    public Environment(Rewards rewards) {
         this.rewards = rewards;
-        this.state = state;
-    }
-
-    public Environment() {
-
     }
 
     public int getCurrRow() {
@@ -22,6 +17,26 @@ public class Environment {
 
     public int getCurrCol() {
         return this.state.getCol();
+    }
+
+    public Position getState() {
+        return state.copy();
+    }
+
+    public Rewards getRewards() {
+        return rewards;
+    }
+
+    public double getMaxQAtCurrState() {
+        return qValues.getMaxQAtPos(state);
+    }
+
+    public double getQValue(Position state, int actionIndex) {
+        return qValues.getQValue(state, actionIndex);
+    }
+
+    public void updateQValue(Position state, int actionIndex, double qValue) {
+        qValues.setQValue(state, actionIndex, qValue);
     }
 
     public void putInRandStartingPosition() {

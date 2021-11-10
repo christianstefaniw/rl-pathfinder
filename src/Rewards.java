@@ -1,10 +1,10 @@
 import java.util.Arrays;
 
 public class Rewards {
-    public PathDifficulty difficulty;
     public static final int LOSE_REWARD = -100, WIN_REWARD = 100, VALID_STEP_REWARD = -1;
 
     private int[][] rewards = new int[Environment.numRows][Environment.numCols];
+    private PathDifficulty difficulty;
 
     public Rewards(PathDifficulty difficulty) {
         this.difficulty = difficulty;
@@ -21,6 +21,10 @@ public class Rewards {
         case HARD:
             PathGenerator.hard(rewards);
         }
+    }
+
+    public PathDifficulty getPathDifficulty() {
+        return difficulty;
     }
 
     public boolean isInTerminalState(Position pos) {
