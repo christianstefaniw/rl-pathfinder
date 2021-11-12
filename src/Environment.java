@@ -11,14 +11,6 @@ public class Environment {
         this.rewards = rewards;
     }
 
-    public int getCurrRow() {
-        return this.state.getRow();
-    }
-
-    public int getCurrCol() {
-        return this.state.getCol();
-    }
-
     public Position getState() {
         return state.copy();
     }

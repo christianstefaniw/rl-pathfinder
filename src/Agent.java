@@ -23,9 +23,11 @@ public class Agent {
             while (!env.isInTerminalState()) {
                 Position oldState = env.getState();
                 int actionIndex = env.getNextAction(epsilon);
-                env.updateState(actionIndex);
 
-                int reward = env.getRewards().getRewardAtCoords(env.getCurrRow(), env.getCurrCol());
+                env.updateState(actionIndex);
+                Position newState = env.getState();
+
+                int reward = env.getRewards().getRewardAtState(newState);
                 double oldQValue = env.getQValues().getQValue(oldState, actionIndex);
                 double temporalDifference = calculateTemporalDifference(reward, oldQValue);
 

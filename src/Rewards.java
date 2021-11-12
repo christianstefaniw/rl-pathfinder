@@ -31,8 +31,8 @@ public class Rewards {
         return rewards[pos.getRow()][pos.getCol()] == -100 || rewards[pos.getRow()][pos.getCol()] == 100 ? true : false;
     }
 
-    public int getRewardAtCoords(int row, int col) {
-        return rewards[row][col];
+    public int getRewardAtState(Position state) {
+        return rewards[state.getRow()][state.getCol()];
     }
 
     public int[][] deepCopy() {
